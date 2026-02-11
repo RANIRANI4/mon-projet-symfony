@@ -5,7 +5,7 @@
 
 {% block body %}
 
-    <table>
+    <table class="table">
         <thead>
         <tr>
             <th>ID</th>
@@ -21,10 +21,10 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">Show</a>
+                    <a class="btn btn-warning" href="{{ path('app_user_show', {'id': user.id}) }}">Show</a>
                 </td>
                 <td>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Edit</a>
+                    <a class="btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">Edit</a>
                 </td>
             </tr>
         {% endfor %}
