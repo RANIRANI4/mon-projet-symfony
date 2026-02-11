@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit user{% endblock %}
+
+{% block body %}
+    <h1>Voici ma page de modification</h1>
+
+    <form action="{{ url('app_user_delete', { 'id': user.id }) }}" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+        <button type="submit">Delete</button>
+    </form>
+
+    {% include 'user/_form.html.twig' %}
+
+{% endblock %}
+
