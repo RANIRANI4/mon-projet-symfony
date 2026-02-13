@@ -11,6 +11,12 @@
                 <th>Id</th>
                 <td>{{ product.id }}</td>
             </tr>
+            {% if product.imageFilename %}
+                <tr>
+                    <th>Image</th>
+                    <td><img src="{{ asset('uploads/products/' ~ product.imageFilename) }}" alt="{{ product.title }}" width="250" loading="lazy"></td>
+                </tr>
+            {% endif %}
             <tr>
                 <th>Title</th>
                 <td>{{ product.title }}</td>

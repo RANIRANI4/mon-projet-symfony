@@ -5,6 +5,10 @@
 {% block body %}
     <h1>Edit Product</h1>
 
+    {% if product.imageFilename %}
+       <img src="{{ asset('uploads/products/' ~ product.imageFilename) }}" alt="{{ product.title }}" width="250" loading="lazy">
+    {% endif %}
+
     {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_product_index') }}">back to list</a>
