@@ -23,7 +23,7 @@ final class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
-        return $this->render('user/index.html.twig', [
+        return $this->render('admin/user/index.html.twig', [
             "title" => "Liste des utilisateurs",
             "users" => $users,
         ]);
@@ -53,14 +53,14 @@ final class UserController extends AbstractController
             return $this->redirectToRoute('app_user_index');
         }
 
-        return $this->render('user/new.html.twig', [
+        return $this->render('admin/user/new.html.twig', [
             'form' => $form,
         ]);
     }
     #[Route("/{id}", name: "app_user_show", methods: ["GET"])]
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
+        return $this->render('admin/user/show.html.twig', [
             "user" => $user,
         ]);
 
@@ -83,7 +83,7 @@ final class UserController extends AbstractController
             return $this->redirectToRoute('app_user_index');
         }
 
-        return $this->render('user/edit.html.twig', [
+        return $this->render('admin/user/edit.html.twig', [
             'form' => $form,
             'user' => $user
         ]);
