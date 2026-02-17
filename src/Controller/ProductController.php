@@ -44,6 +44,7 @@ final class ProductController extends AbstractController
 
                 try {
                     $imageFile->move($imagesDirectory, $newFilename);
+
                 } catch (FileException $e) {
                     throw new Exception($e->getMessage());
                 }
