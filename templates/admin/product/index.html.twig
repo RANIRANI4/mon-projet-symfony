@@ -3,6 +3,9 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
+
+    {{ include ('partials/_pagination.html.twig') }}
+
     <h1>Product index</h1>
 
     <table class="table">

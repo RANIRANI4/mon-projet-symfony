@@ -18,10 +18,16 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProductController extends AbstractController
 {
     #[Route(name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    public function index(Request $request, ProductRepository $productRepository): Response
     {
+        $size = isset($request->query->all()['size']) ? (int)$request->query->get('size') : 10;
+        $page = isset($request->query->all()['page']) ? (int)$request->query->get('page') : 1;
+
+        $data = $productRepository->findPaginate($size, $page);
+
         return $this->render('admin/product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $data['products'],
+            'count' => $data['count'],
         ]);
     }
 
@@ -120,7 +126,7 @@ final class ProductController extends AbstractController
     #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->getPayload()->getString('_token'))) {
             if ($product->getImageFilename()) {
                 $oldImagePath = $this->getParameter('kernel.project_dir') . '/public/uploads/products/' . $product->getImageFilename();
                 if (file_exists($oldImagePath)) {
