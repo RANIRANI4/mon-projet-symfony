@@ -19,7 +19,7 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Faker\Factory::create("fr_FR");
+        $faker = Faker\Factory::create("ar_SA");
 
 
         for ($i = 1; $i <= 2; $i++) {
